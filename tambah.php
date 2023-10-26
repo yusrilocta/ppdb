@@ -2,27 +2,15 @@
 <html>
 <head>
     <title>Tambah Data Siswa</title>
-    <!-- Include Bootstrap CSS -->    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Include Bootstrap CSS -->    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
-  <div class="container">
-    <a class="navbar-brand" href="#">SMK Nurul Hidayah</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">| Administrasi Pendaftaran Peserta Didik Baru</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<div class="container mb-4">
+<?php 
+$phone = $_GET['phone'];
+$password = $_GET['password'];
+?>
+<div class="container">
     <h2>Masukkan Data Berikut Dibawah Ini Dengan Lengkap Dan Benar</h2>
 
     <form id="tambahSiswaForm" method="post" action="prsestambah.php">
@@ -32,7 +20,7 @@
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="text" class="form-control" id="password" name="password" value="<?php echo $password ?>" required>
         </div>
         <div class="form-group">
             <label for="first_name">First Name</label>
@@ -48,7 +36,7 @@
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" required>
+            <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $phone ?>" required>
         </div>
         <div class="form-group">
                 <label for="asal_sekolah">Asal Sekolah</label>
@@ -97,7 +85,6 @@
                 <label for="nis">NIS</label>
                 <input type="text" class="form-control" id="nis" name="nis" required>
             </div>
-        <!-- Tambahkan field lainnya sesuai dengan kebutuhan -->
         <div class="mt-4">
         <button type="submit" class="btn btn-primary">Simpan Data</button>
         </div>
