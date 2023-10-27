@@ -85,6 +85,9 @@
                     <li class="nav-item">
                       <a class="page-scroll" href="#why">Kenapa SMK Nurul Hidayah?</a>
                     </li>
+                    <li class="nav-item">
+                      <a href="siswa_login.php">Siswa Login</a>
+                    </li>
                   </ul>
                 </div>
                 <!-- navbar collapse -->

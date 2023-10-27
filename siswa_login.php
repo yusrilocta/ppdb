@@ -10,11 +10,11 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h2 class="mb-4">Login</h2>
-                <form method="post" action="process_login.php">
+                <form method="post" action="process_login_siswa.php">
                 <img class="img-fluid h-30" src="assets/img/logo/ll.svg" alt="Logo" />
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
+                        <label for="username">E-Mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>

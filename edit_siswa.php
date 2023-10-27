@@ -51,7 +51,7 @@ $nis = $_POST['nis'];
 
         // Eksekusi statement
         if ($stmt->execute()) {
-            echo header("Location:/ppds/admin/index.php");
+            header("Location: print.php/?id=" . $_POST['id']);
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }

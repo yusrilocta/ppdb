@@ -52,7 +52,7 @@
 </nav>
 <div class="container">
         <h2>Edit Data Siswa</h2>
-        <form method="POST" action="/ppds/admin/edit_siswa.php">
+        <form method="POST" action="/ppds/edit_siswa.php">
             <!-- Field 'id' diperlukan untuk mengidentifikasi data yang akan diubah -->
             <input type="hidden" name="id" value="<?php echo $siswa_id; ?>">
             <div class="form-group">
