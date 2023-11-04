@@ -299,8 +299,8 @@
               </div>
               <form action="tambah.php">
                 <div class="form-group">
-                  <label class="text-white">Nomer Handphone</label>
-                  <input type="text" class="form-control" id="phone" name="phone" required>
+                  <label class="text-white">NISN</label>
+                  <input type="text" class="form-control" id="nisn" name="nisn" required>
               </div>
               <div class="form-group">
                   <label class="text-white">Password Baru</label>

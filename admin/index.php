@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['id']) || $_SESSION['id'] === null) {
+  header('Location: ../index.php');
+  exit; 
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +36,10 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Username</th>
-                    <th>Nama Lengkap</th>
-                    <th>Email</th>
-                    <th>Phone</th>
+                    <th>Nama</th>
+                    <th>NISN</th>
+                    <th>NIK</th>
+                    <th>Asal Sekolah</th>
                     <th>Aksi</th>
                     <!-- Tambahkan kolom lain sesuai kebutuhan -->
                 </tr>
@@ -40,16 +48,16 @@
                 <?php
                 include 'koneksi.php';
 
-                $sql = "SELECT * FROM tb_daftarsiswa";
+                $sql = "SELECT * FROM calon_siswa";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . $row['username'] . "</td>";
-                        echo "<td>" . $row['first_name'] . " " . $row['last_name'] . "</td>";
-                        echo "<td>" . $row['email'] . "</td>";
-                        echo "<td>" . $row['phone'] . "</td>";
+                        echo "<td>" . $row['nama'] . "</td>";
+                        echo "<td>" . $row['nisn'] ."</td>";
+                        echo "<td>" . $row['nik'] . "</td>";
+                        echo "<td>" . $row['asal_sekolah'] . "</td>";
                         echo "<td>
                         <a class='btn btn-warning' href='edit_data.php/?id=".$row['id']."'>Edit</a>
                         <a class='btn btn-danger' href='hapus.php/?id=".$row['id']."'>Hapus</a>

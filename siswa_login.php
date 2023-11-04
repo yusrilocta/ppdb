@@ -9,16 +9,16 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h2 class="mb-4">Login</h2>
+                <h2 class="mb-4">Calon Siswa Login</h2>
                 <form method="post" action="process_login_siswa.php">
                 <img class="img-fluid h-30" src="assets/img/logo/ll.svg" alt="Logo" />
                     <div class="form-group">
                         <label for="username">E-Mail</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="text" class="form-control" id="nisn" name="nisn" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                        <input type="text" class="form-control" id="password" name="password" required>
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Login</button>
                 </form>

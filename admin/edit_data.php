@@ -1,30 +1,58 @@
 <?php
+session_start();
+if (!isset($_SESSION['id']) || $_SESSION['id'] === null) {
+    header('Location: ../index.php');
+    exit; 
+}
                 // Ambil data yang telah diupdate dari database
                 include 'koneksi.php';
 
                 $siswa_id = $_GET['id']; // Ambil ID siswa dari URL
 
-                $sql = "SELECT * FROM tb_daftarsiswa WHERE id = $siswa_id"; // Ganti 'id' dengan kolom kunci utama Anda
+                $sql = "SELECT * FROM calon_siswa WHERE id = $siswa_id"; // Ganti 'id' dengan kolom kunci utama Anda
 
                 $result = $conn->query($sql);
                 while ($row = $result->fetch_assoc()) {
-                    $username= $row['username'];
-                    $password= $row['password'];
-                    $first_name = $row['first_name'] ;
-                    $last_name= $row['last_name'] ;
-                    $email= $row['email'] ;
-                    $phone= $row['phone'] ;
-                    $asal_sekolah = $row['asal_sekolah'];
+                    $id = $row['id'];
+                    $nama = $row['nama'];
+                    $jenis_kelamin = $row['jenis_kelamin'];
+                    $nisn = $row['nisn'];
                     $tempat_lahir = $row['tempat_lahir'];
                     $tanggal_lahir = $row['tanggal_lahir'];
-                    $jenis_kelamin = $row['jenis_kelamin'];
+                    $nik = $row['nik'];
                     $agama = $row['agama'];
-                    $nisn = $row['nisn'];
-                    $alamat_siswa = $row['alamat_siswa'];
-                    $nama_ortu_wali = $row['nama_ortu_wali'];
-                    $pekerjaan_ortu_wali = $row['pekerjaan_ortu_wali'];
-                    $alamat_ortu_wali = $row['alamat_ortu_wali'];
-                    $nis = $row['nis'];
+                    $kebutuhan_khusus = $row['kebutuhan_khusus'];
+                    $alamat = $row['alamat'];
+                    $rt = $row['rt'];
+                    $rw = $row['rw'];
+                    $dusun = $row['dusun'];
+                    $kelurahan = $row['kelurahan'];
+                    $kecamatan = $row['kecamatan'];
+                    $kode_pos = $row['kode_pos'];
+                    $jenis_tinggal = $row['jenis_tinggal'];
+                    $alat_transportasi = $row['alat_transportasi'];
+                    $asal_sekolah = $row['asal_sekolah'];
+                    $hp = $row['hp'];
+                    $penerima_kip = $row['penerima_kip'];
+                    $no_kip = $row['no_kip'];
+                    $jurusan = $row['jurusan'];
+                    $data_ayah_nama = $row['data_ayah_nama'];
+                    $data_ayah_tahun_lahir = $row['data_ayah_tahun_lahir'];
+                    $data_ayah_jenjang_pendidikan = $row['data_ayah_jenjang_pendidikan'];
+                    $data_ayah_pekerjaan = $row['data_ayah_pekerjaan'];
+                    $data_ayah_penghasilan = $row['data_ayah_penghasilan'];
+                    $data_ayah_kebutuhan_khusus = $row['data_ayah_kebutuhan_khusus'];
+                    $data_ibu_nama = $row['data_ibu_nama'];
+                    $data_ibu_tahun_lahir = $row['data_ibu_tahun_lahir'];
+                    $data_ibu_jenjang_pendidikan = $row['data_ibu_jenjang_pendidikan'];
+                    $data_ibu_pekerjaan = $row['data_ibu_pekerjaan'];
+                    $data_ibu_penghasilan = $row['data_ibu_penghasilan'];
+                    $data_ibu_kebutuhan_khusus = $row['data_ibu_kebutuhan_khusus'];
+                    $berat_badan = $row['berat_badan'];
+                    $tinggi_badan = $row['tinggi_badan'];
+                    $jarak_rumah_sekolah = $row['jarak_rumah_sekolah'];
+                    $waktu_tempuh_sekolah = $row['waktu_tempuh_sekolah'];
+                    $jumlah_saudara_kandung = $row['jumlah_saudara_kandung'];
                 }
 ?>
 <!DOCTYPE html>
@@ -50,81 +78,218 @@
     </div>
   </div>
 </nav>
+
 <div class="container">
-        <h2>Edit Data Siswa</h2>
-        <form method="POST" action="/ppds/admin/edit_siswa.php">
-            <!-- Field 'id' diperlukan untuk mengidentifikasi data yang akan diubah -->
-            <input type="hidden" name="id" value="<?php echo $siswa_id; ?>">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>" required>
+    <form id="editsiswa" method="POST" action="/ppdb/edit_siswa.php">
+    <div class="row">
+    <div class="alert alert-primary">
+                <strong>Data Diri</strong>
+            </div>
+        
+                <div class="col-md-6">
+                
+                <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id ?>" required>
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" value="<?php echo $jenis_kelamin ?>" required>
+                            <option value="Laki-Laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nisn">NISN</label>
+                        <input type="text" class="form-control" id="nisn" name="nisn" value="<?php echo $nisn ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="tempat_lahir">Tempat Lahir</label>
+                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir"value="<?php echo $tempat_lahir ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir"  value="<?php echo $tanggal_lahir ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="nik">NIK</label>
+                        <input type="text" class="form-control" id="nik" name="nik" value="<?php echo $nik ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="agama">Agama</label>
+                        <input type="text" class="form-control" id="agama" name="agama" value="<?php echo $agama ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="kebutuhan_khusus">Kebutuhan Khusus (ya/tidak)</label>
+                        <select class="form-control" id="kebutuhan_khusus" name="kebutuhan_khusus">
+                            <option  value="<?php echo $kebutuhan_khusus ?>"><?php echo $kebutuhan_khusus ?></option>
+                            <option value="Tidak">Tidak</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <textarea class="form-control" id="alamat" name="alamat" rows="3"><?php echo $alamat ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="rt">RT</label>
+                        <input type="text" class="form-control" id="rt" name="rt"value="<?php echo $rt ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="rw">RW</label>
+                        <input type="text" class="form-control" id="rw" name="rw"value="<?php echo $rw ?>">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="dusun">Dusun</label>
+                        <input type="text" class="form-control" id="dusun" name="dusun"value="<?php echo $dusun ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="kelurahan">Kelurahan</label>
+                        <input type="text" class="form-control" id="kelurahan" name="kelurahan"value="<?php echo $kelurahan ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="kecamatan">Kecamatan</label>
+                        <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="<?php echo $kecamatan ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="kode_pos">Kode Pos</label>
+                        <input type="text" class="form-control" id="kode_pos" name="kode_pos"value="<?php echo $kode_pos ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="jenis_tinggal">Jenis Tinggal</label>
+                        <select class="form-control" id="jenis_tinggal" name="jenis_tinggal" value="<?php echo $jenis_tinggal ?>">
+                            <option value="Rumah Sendiri">Rumah Sendiri</option>
+                            <option value="Kos">Kos</option>
+                            <option value="Kontrakan">Kontrakan</option>
+                            <option value="Rumah Orang Tua">Rumah Orang Tua</option>
+                            <option value="Asrama">Asrama</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="alat_transportasi">Alat Transportasi</label>
+                        <input type="text" class="form-control" id="alat_transportasi" name="alat_transportasi" value="<?php echo $alat_transportasi ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="asal_sekolah">Asal Sekolah / Sekolah Sebelumnya</label>
+                        <input type="text" class="form-control" id="asal_sekolah" name="asal_sekolah" value="<?php echo $asal_sekolah ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="hp">HP</label>
+                        <input type="text" class="form-control" id="hp" name="hp" value="<?php echo $hp ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="penerima_kip">Penerima KIP</label>
+                        <select class="form-control" id="penerima_kip" name="penerima_kip" value="<?php echo $penerima_kip ?>">
+                            <option value="Ya">Ya</option>
+                            <option value="Tidak">Tidak</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_kip">No. KIP</label>
+                        <input type="text" class="form-control" id="no_kip" name="no_kip" value="<?php echo $no_kip ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="jurusan">Jurusan</label>
+                        <input type="text" class="form-control" id="jurusan" name="jurusan" value="<?php echo $jurusan ?>">
+                    </div>
+                </div>
+            </div>
+            <!-- Field untuk Data Ayah -->
+            <div class="alert alert-primary mt-2">
+                <strong>Data Ayah</strong>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nama_ayah">Nama Ayah</label>
+                        <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" value="<?php echo $data_ayah_nama ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="tahun_lahir_ayah">Tahun Lahir Ayah</label>
+                        <input type="text" class="form-control" id="tahun_lahir_ayah" name="tahun_lahir_ayah" value="<?php echo $data_ayah_tahun_lahir ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="jenjang_pendidikan_ayah">Jenjang Pendidikan Ayah</label>
+                        <input type="text" class="form-control" id="jenjang_pendidikan_ayah" name="jenjang_pendidikan_ayah" value="<?php echo $data_ayah_jenjang_pendidikan ?>">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="pekerjaan_ayah">Pekerjaan Ayah</label>
+                        <input type="text" class="form-control" id="pekerjaan_ayah" name="pekerjaan_ayah"value="<?php echo $data_ayah_pekerjaan ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="penghasilan_ayah">Penghasilan Ayah</label>
+                        <input type="text" class="form-control" id="penghasilan_ayah" name="penghasilan_ayah" value="<?php echo $data_ayah_pekerjaan ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="data_ayah_kebutuhan_khusus">Penghasilan Ayah</label>
+                        <input type="text" class="form-control" id="data_ayah_kebutuhan_khusus" name="ayah_kebutuhan_khusus" value="<?php echo $data_ibu_kebutuhan_khusus  ?>">
+                    </div>
+                </div>
+            </div>
+            <!-- Field untuk Data Ibu -->
+            <div class="alert alert-primary mt-2">
+                <strong>Data Ibu</strong>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="nama_ibu">Nama Ibu</label>
+                        <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" value="<?php echo $data_ibu_nama ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="tahun_lahir_ibu">Tahun Lahir Ibu</label>
+                        <input type="text" class="form-control" id="tahun_lahir_ibu" name="tahun_lahir_ibu" value="<?php echo $data_ibu_tahun_lahir ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="jenjang_pendidikan_ibu">Jenjang Pendidikan Ibu</label>
+                        <input type="text" class="form-control" id="jenjang_pendidikan_ibu" name="jenjang_pendidikan_ibu" value="<?php echo $data_ibu_jenjang_pendidikan ?>">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="pekerjaan_ibu">Pekerjaan Ibu</label>
+                        <input type="text" class="form-control" id="pekerjaan_ibu" name="pekerjaan_ibu" value="<?php echo $data_ibu_pekerjaan ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="penghasilan_ibu">Penghasilan Ibu</label>
+                        <input type="text" class="form-control" id="penghasilan_ibu" name="penghasilan_ibu" value="<?php echo $data_ibu_penghasilan ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="data_ibu_kebutuhan_khusus">Penghasilan Ibu</label>
+                        <input type="text" class="form-control" id="data_ibu_kebutuhan_khusus" name="ibu_kebutuhan_khusus" value="<?php echo $data_ibu_kebutuhan_khusus ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-primary mt-2">
+                <strong>Data Lain</strong>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" value="<?php echo $password; ?>" required>
+                <label for="berat_badan">Berat Badan</label>
+                <input type="text" class="form-control" id="berat_badan" name="berat_badan" value="<?php echo $berat_badan ?>">
             </div>
             <div class="form-group">
-                <label for="first_name">First Name</label>
-                <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $first_name; ?>" required>
+                <label for="tinggi_badan">Tinggi Badan</label>
+                <input type="text" class="form-control" id="tinggi_badan" name="tinggi_badan" value="<?php echo $tinggi_badan ?>">
             </div>
             <div class="form-group">
-                <label for="last_name">Last Name</label>
-                <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo $last_name; ?>" required>
+                <label for="jarak_rumah">Jarak Rumah ke Sekolah (km)</label>
+                <input type="text" class="form-control" id="jarak_rumah" name="jarak_rumah" value="<?php echo $jarak_rumah_sekolah ?>" required>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required>
+                <label for="waktu_tempuh">Waktu Tempuh ke Sekolah (menit)</label>
+                <input type="text" class="form-control" id="waktu_tempuh" name="waktu_tempuh" value="<?php echo $waktu_tempuh_sekolah ?>" required>
             </div>
             <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $phone; ?>" required>
+                <label for="jumlah_saudara">Jumlah Saudara Kandung</label>
+                <input type="text" class="form-control" id="jumlah_saudara" name="jumlah_saudara" value="<?php echo $jumlah_saudara_kandung ?>" required>
             </div>
             <div class="form-group">
-                <label for="asal_sekolah">Asal Sekolah</label>
-                <input type="text" class="form-control" id="asal_sekolah" name="asal_sekolah" value="<?php echo $asal_sekolah; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="tempat_lahir">Tempat Lahir</label>
-                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?php echo $tempat_lahir; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="tanggal_lahir">Tanggal Lahir</label>
-                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $tanggal_lahir; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="jenis_kelamin">Jenis Kelamin</label>
-                <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
-                    <option value="Laki-Laki" <?php if ($jenis_kelamin == 'Laki-Laki') echo 'selected'; ?>>Laki-Laki</option>
-                    <option value="Perempuan" <?php if ($jenis_kelamin == 'Perempuan') echo 'selected'; ?>>Perempuan</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="agama">Agama</label>
-                <input type="text" class="form-control" id="agama" name="agama" value="<?php echo $agama; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="nisn">NISN</label>
-                <input type="text" class="form-control" id="nisn" name="nisn" value="<?php echo $nisn; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="alamat_siswa">Alamat Siswa</label>
-                <textarea class="form-control" id="alamat_siswa" name="alamat_siswa" rows="3" required><?php echo $alamat_siswa; ?></textarea>
-            </div>
-            <div class="form-group">
-                <label for="nama_ortu_wali">Nama Orang Tua/Wali</label>
-                <input type="text" class="form-control" id="nama_ortu_wali" name="nama_ortu_wali" value="<?php echo $nama_ortu_wali; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="pekerjaan_ortu_wali">Pekerjaan Orang Tua/Wali</label>
-                <input type="text" class="form-control" id="pekerjaan_ortu_wali" name="pekerjaan_ortu_wali" value="<?php echo $pekerjaan_ortu_wali; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="alamat_ortu_wali">Alamat Orang Tua/Wali</label>
-                <textarea class="form-control" id="alamat_ortu_wali" name="alamat_ortu_wali" rows="3" required><?php echo $alamat_ortu_wali; ?></textarea>
-            </div>
-            <div class="form-group">
-                <label for="nis">NIS</label>
-                <input type="text" class="form-control" id="nis" name="nis" value="<?php echo $nis; ?>" required>
+                <label for="password">Masukan Password BARU</label>
+                <input type="text" class="form-control" id="password" name="password" value="<?php echo $password ?>">
             </div>
             <div class="mt-4">
             <!-- Tambahkan field lainnya sesuai dengan kebutuhan -->
