@@ -1,8 +1,8 @@
 <?php
 session_start();
-if (!isset($_SESSION['id']) || $_SESSION['id'] === null) {
-    header('Location: ../index.php');
-    exit; 
+if (!isset($_SESSION['username']) || $_SESSION['username'] === null) {
+  header('Location: ../index.php');
+  exit; 
 }
                 // Ambil data yang telah diupdate dari database
                 include 'koneksi.php';

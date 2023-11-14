@@ -49,6 +49,7 @@ session_start();
                   $jarak_rumah_sekolah = $row['jarak_rumah_sekolah'];
                   $waktu_tempuh_sekolah = $row['waktu_tempuh_sekolah'];
                   $jumlah_saudara_kandung = $row['jumlah_saudara_kandung'];
+                  $ket = $row['keterangan'];
                 }
 ?>
 <!DOCTYPE html>
@@ -84,7 +85,8 @@ session_start();
 <table class="table table-borderless mt-5">
     <tbody>
     <tr>
-      <td align="left">    
+      <td align="left">
+        Status : <b><?php echo $ket; ?></b>
                 </td>
       <td width="400"></td>
       <td align="right">

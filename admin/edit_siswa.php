@@ -1,10 +1,8 @@
 <?php
 session_start();
-
-// Periksa apakah sesi "id" tidak ada atau null
-if (!isset($_SESSION['id']) || $_SESSION['id'] === null) {
-    header('Location: ../index.php');
-    exit; 
+if (!isset($_SESSION['username']) || $_SESSION['username'] === null) {
+  header('Location: ../index.php');
+  exit; 
 }
 include 'koneksi.php';
 
